@@ -1,4 +1,3 @@
-import React from 'react';
 import upicon from '../icons/arrow_up.svg';
 import downicon from '../icons/arrow_down.svg';
 import deleteicon from '../icons/delete.svg';
