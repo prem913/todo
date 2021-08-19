@@ -1,38 +1,112 @@
-.App {
+.app{
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+h1{
+  display: block;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button{
+  border: none;
+  border-radius: none;
+  box-shadow: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.displaynone{
+  display: none;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header{
+  position: sticky;
+  top: 0;
+  padding: 1.6rem 2rem;
+  background-color: white;
+  transition: all 0.3s;
+  z-index: 999;
+  /* box-shadow: 0 3px 4px #0003; */
+}
+.addtodo{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 1rem 0.5rem;
 }
-
-.App-link {
-  color: #61dafb;
+.input{
+  display: flex;
+  flex-wrap: nowrap;
+  border: 1px solid rgb(107, 106, 106);
+  border-radius: 12px;
+  overflow: hidden;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.addtodo input[type="text"]{
+  outline: none;
+  padding: 0.8rem 1rem;
+  border: none;
+  font-size: 1.2rem;
+}
+.addtodo button{
+  display: flex;
+  align-items: center;
+  background-color: rgb(134, 134, 134);
+  padding: 1rem 1rem;
+  font-size: 2rem;
+  color: rgb(48, 48, 48);
+}
+.todos{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-flow: column;
+  flex: 1 1 auto;
+}
+.todos>h1{
+  text-align: center;
+  margin: 1rem;
+}
+.todocard{
+  margin: 0.3rem;
+  border: 1px #0003 solid;
+  border-radius: 8px;
+  box-shadow: 1 1rem 0 #0003;
+  padding: 1rem;
+  transition: all 2s;
+}
+.todocard>.card{
+  padding: 0.3rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  justify-content: space-between;
+}
+.card>.btn{
+  transition: all 500ms;
+}
+.options{
+  display: flex;
+  justify-content: space-around;
+}
+.options>img{
+  padding: 0.5rem 2rem;
+  border-radius: 12px;
+  transition: all 600ms;
+}
+.options>img:hover{
+  transition: all 400ms;
+  background-color: #0003;
+}
+.nothing{
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+}
+.nothing>img{
+  width: 100%;
+}
+@media  only screen and (min-width:728px) {
+  .todos{
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+  .todocard{
+    min-width: 728px;
   }
 }
