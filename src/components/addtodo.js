@@ -1,11 +1,14 @@
 import React,{useState} from 'react';
 import addIcon from '../icons/add.svg';
-function Addtodo({addtodo}) {
+import {useDispatch} from 'react-redux';
+import {addTodo} from '../features/todos/todosSlice';
+function Addtodo() {
+  const dispatch= useDispatch();
     const [input,setInput]=useState("");
     function handlesubmit(e){
         e.preventDefault();
         if(input==="") return;
-        addtodo(input);
+        dispatch(addTodo(input))
         setInput("");
     }
     return (
