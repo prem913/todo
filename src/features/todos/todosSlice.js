@@ -9,7 +9,7 @@ function getIndex(arr,key){
 export const todosSlice = createSlice({
     name: 'todos',
     initialState: {
-        value: ["hoeelo"],
+        value: [],
     },
     reducers: {
         setTodos: (state,action)=>{
@@ -26,10 +26,10 @@ export const todosSlice = createSlice({
                 localStorage.setItem("todos", JSON.stringify(state.value));
                 return;
             }
-            state.value.push({
+            state.value[state.value.length]={
                 todo:action.payload,
                 time:new Date().getTime()
-            })
+            }
             localStorage.setItem("todos", JSON.stringify(state.value));
         },
         moveUp: (state,action)=>{

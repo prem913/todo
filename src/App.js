@@ -9,7 +9,7 @@ function App() {
   const dispatch=useDispatch();
   useEffect(()=>{
     let p = JSON.parse(localStorage.getItem("todos"));
-    console.log(p);
+    if(p)
     dispatch(setTodos(p));
   },[dispatch]);
 
