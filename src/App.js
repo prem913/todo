@@ -8,7 +8,9 @@ import { useDispatch } from 'react-redux';
 function App() {
   const dispatch=useDispatch();
   useEffect(()=>{
-    dispatch(setTodos(JSON.parse(localStorage.getItem("todos"))))
+    let p = JSON.parse(localStorage.getItem("todos"));
+    console.log(p);
+    dispatch(setTodos(p));
   },[dispatch]);
 
   return (

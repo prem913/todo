@@ -9,20 +9,27 @@ function getIndex(arr,key){
 export const todosSlice = createSlice({
     name: 'todos',
     initialState: {
-        value: [],
+        value: ["hoeelo"],
     },
     reducers: {
         setTodos: (state,action)=>{
           state.value=action.payload;  
         },
         addTodo: (state, action) => {
-            state.value = [
-                {
-                    todo:action.payload,
-                    time:new Date().getTime()
-                },
-                ...state.value
-            ];
+            if(state?.value?.length === 0){
+                state.value=[
+                    {
+                        todo:action.payload,
+                        time:new Date().getTime()
+                    }
+                ]
+                localStorage.setItem("todos", JSON.stringify(state.value));
+                return;
+            }
+            state.value.push({
+                todo:action.payload,
+                time:new Date().getTime()
+            })
             localStorage.setItem("todos", JSON.stringify(state.value));
         },
         moveUp: (state,action)=>{
@@ -44,7 +51,6 @@ export const todosSlice = createSlice({
             action.payload.next();
         },
         deleteTodo: (state,action)=>{
-            console.log("in");
             let newtodos=[];
             let l=state.value.length;
             for(let i=0;i<l;i++){
