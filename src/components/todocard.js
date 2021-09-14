@@ -4,17 +4,37 @@ import Options from './options';
 import expandIcon from '../icons/expand.svg';
 import {moveUp,moveDown,deleteTodo} from '../features/todos/todosSlice';
 import { useDispatch } from 'react-redux';
+import { setAlert } from '../features/alert/alertSlice';
 function Todocard({todo,time}) {
     const [collapsed,setCollapse]=useState(false);
     const dispatch=useDispatch();
     const cardRef=useRef(null);
+    const handleclick=()=>{
+        setCollapse(!collapsed);
+        // if(collapsed){
+        //     cardRef.current.style.height="auto";
+        //     setCollapse(false);
+        // }
+        // else{
+        //     gsap.to(cardRef.current,{
+        //     height:"+=40px",
+        //     duration:0.1,
+        //     onComplete:()=>{     
+        // setCollapse(true);
+        //     }
+        // })
+        // }
+    }
     let deletetodo=(id)=>{
         gsap.to(cardRef.current,{x: "+=70%" ,
         opacity:0,
-        duration: 0.5,
+        duration: 0.27,
         ease: Power1.easeOut,
         onComplete:()=>{
             dispatch(deleteTodo(id));
+            dispatch(setAlert({
+                key:id,
+                msg:"Marked as done👍"}))
         }
         })
     }
@@ -35,15 +55,18 @@ function Todocard({todo,time}) {
     )
     }
     useEffect(()=>{
-        cardRef.current.style.transform="translateX(0)";
-        cardRef.current.style.opacity=1;
+        gsap.to(cardRef.current,{x: "0" ,
+        opacity:1,
+        duration: 0.3,
+        ease: Power1.easeOut
+        })
     },[cardRef])
     return (
         <div ref={cardRef} className="todocard" style={collapsed?{backgroundColor:"#0001"}:{}} >
             <div className="card" >
             {todo}
             <div className="btn" style={collapsed?{}:{transform:"rotate(180deg)"}}>
-            <img src={expandIcon} onClick={()=>{setCollapse(!collapsed)}} alt="expand"></img>
+            <img src={expandIcon} onClick={handleclick} alt="expand"></img>
             </div>
             </div>
             {collapsed?<Options movedown={movedown} moveup={moveup} deletetodo={deletetodo} id={time} />:""}

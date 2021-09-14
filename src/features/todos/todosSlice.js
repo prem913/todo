@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 function getIndex(arr,key){
     let l=arr.length;
     for(let i=0;i<l;i++){
@@ -26,10 +25,10 @@ export const todosSlice = createSlice({
                 localStorage.setItem("todos", JSON.stringify(state.value));
                 return;
             }
-            state.value[state.value.length]={
+            state.value=[{
                 todo:action.payload,
                 time:new Date().getTime()
-            }
+            },...state.value]
             localStorage.setItem("todos", JSON.stringify(state.value));
         },
         moveUp: (state,action)=>{
@@ -51,13 +50,7 @@ export const todosSlice = createSlice({
             action.payload.next();
         },
         deleteTodo: (state,action)=>{
-            let newtodos=[];
-            let l=state.value.length;
-            for(let i=0;i<l;i++){
-                if(state.value[i].time!==action.payload) 
-                newtodos.push(state.value[i]);
-            }
-            state.value=newtodos;
+            state.value=state.value.filter(e=>e.time!==action.payload);
             localStorage.setItem("todos", JSON.stringify(state.value));
         }
     },

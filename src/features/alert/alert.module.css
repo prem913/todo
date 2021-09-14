@@ -1,0 +1,12 @@
+.wrapper{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99889;
+    margin: 1rem;
+    border: 2px solid gray;
+    padding: .6rem;
+    border-radius: 5px;
+    transition: transform .5s ease;
+    transform: translateX(200%);
+}

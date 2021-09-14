@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import addIcon from '../icons/add.svg';
 import {useDispatch} from 'react-redux';
 import {addTodo} from '../features/todos/todosSlice';
+import { setAlert } from '../features/alert/alertSlice';
 function Addtodo() {
   const dispatch= useDispatch();
     const [input,setInput]=useState("");
@@ -9,6 +10,9 @@ function Addtodo() {
         e.preventDefault();
         if(input==="") return;
         dispatch(addTodo(input))
+        dispatch(setAlert({
+            key:input,
+            msg:"Task Added"}))
         setInput("");
     }
     return (
